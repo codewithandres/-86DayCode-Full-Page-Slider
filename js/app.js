@@ -36,3 +36,9 @@ for (let col = 0; col < col; col++) {
     main.appendChild(part);
     parts.push(part);
 }
+
+let animaOptions = {
+    duration: 2.3,
+    ease: power4.easeinOut,
+};
+
