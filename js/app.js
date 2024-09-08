@@ -1,17 +1,19 @@
 const cols = 3;
 const main = document.getElementById('main');
 const fragment = document.createDocumentFragment();
+const containerButtons = document.querySelector('.buttons');
 
 let parts = [],
     current = 0,
     playing = false;
 
 let images = [
-    './public/1.jpg',
-    './public/2.jpg',
-    './public/3.jpg',
-    './public/4.jpg',
-    './public/5.jpg',
+    'https://res.cloudinary.com/andresdev/image/upload/v1725826281/tb0dehgkcgvgbcxpjo6b.jpg',
+    'https://res.cloudinary.com/andresdev/image/upload/v1725826151/pekiqije05fvmc7ka3vk.jpg',
+    'https://res.cloudinary.com/andresdev/image/upload/v1725826255/fd946ruhb3awf0cvheue.jpg',
+    'https://res.cloudinary.com/andresdev/image/upload/v1725826251/geg2whybtifvj1bmg7wk.jpg',
+    'https://res.cloudinary.com/andresdev/image/upload/v1725826249/nor1btxouxggu0rmz0lo.jpg',
+    'https://res.cloudinary.com/andresdev/image/upload/v1725826159/en2f0zoogmxto2mzkfg9.jpg',
 ];
 
 for (let i in images) {
@@ -37,6 +39,7 @@ for (let col = 0; col < cols; col++) {
     parts.push(part);
     part.appendChild(fragment);
 }
+
 const animOptions = {
     duration: 2.3,
     ease: Power4.easeInOut,
@@ -191,5 +194,12 @@ const wheel = event => {
         else if (event.deltaY >= 40) go(1);
     });
 };
+
 window.addEventListener('mousewheel', wheel, false);
 window.addEventListener('wheel', wheel, false);
+
+containerButtons.addEventListener('click', ({ target }) => {
+    if (target.closest('[data-next]')) go(-1);
+
+    if (target.closest('[data-prev]')) go(1);
+});
