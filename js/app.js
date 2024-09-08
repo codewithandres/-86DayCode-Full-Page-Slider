@@ -31,7 +31,6 @@ for (let col = 0; col < cols; col++) {
     img.src = images[current];
 
     el.appendChild(img);
-
     part.style.setProperty('--x', (-100 / cols) * col + 'vw');
 
     fragment.appendChild(el);
@@ -91,9 +90,9 @@ const go = dir => {
 //   go(1);
 // }, 2000);
 
-window.addEventListener('keydown', function (e) {
-    if (['ArrowDown', 'ArrowRight'].includes(e.key)) go(1);
-    else if (['ArrowUp', 'ArrowLeft'].includes(e.key)) go(-1);
+window.addEventListener('keydown', event => {
+    if (['ArrowDown', 'ArrowRight'].includes(event.key)) go(1);
+    else if (['ArrowUp', 'ArrowLeft'].includes(event.key)) go(-1);
 });
 
 const lerp = (start, end, amount) => (1 - amount) * start + amount * end;
