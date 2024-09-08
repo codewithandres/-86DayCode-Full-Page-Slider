@@ -1,7 +1,10 @@
 // coulums to divide image in
-const col = 3;
 const main = document.querySelector('.mian');
-let parts = [];
+const col = 3;
+
+let parts = [],
+    current = 0,
+    playing = false;
 
 let images = [
     'public/1.jpg',
@@ -11,9 +14,6 @@ let images = [
     'public/5.jpg',
     'public/6.jpg',
 ];
-
-let current = 0;
-let playing = false;
 
 for (let i in images) {
     new Image().src = images[i];
@@ -37,7 +37,7 @@ for (let col = 0; col < col; col++) {
     parts.push(part);
 }
 
-let animaOptions = {
+const animaOptions = {
     duration: 2.3,
     ease: power4.easeinOut,
 };
@@ -70,9 +70,10 @@ const slide = dir => {
                 playing = false;
             });
         };
+
         for (let p in parts) {
-            let part = parts[p];
-            let next = document.createElement('div');
+            let part = parts[p],
+                next = document.createElement('div');
 
             next.className = 'section';
 
@@ -81,11 +82,7 @@ const slide = dir => {
 
             next.appendChild(img);
 
-            if ((p - Math.max(0, dir)) % 2) {
-                down(part, next);
-            } else {
-                up(part, next);
-            }
+            (p - Math.max(0, dir)) % 2 ? down(part, next) : up(part, next);
         }
     }
 };
